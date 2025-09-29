@@ -15,6 +15,7 @@ import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/preferences/preferences_migration.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/app/widget/app.dart';
+import 'package:hiddify/features/auth/notifier/telegram_auth_link_handler.dart';
 import 'package:hiddify/features/auto_start/notifier/auto_start_notifier.dart';
 import 'package:hiddify/features/deep_link/notifier/deep_link_notifier.dart';
 
@@ -126,6 +127,11 @@ Future<void> lazyBootstrap(
   await _safeInit(
     "deep link service",
     () => container.read(deepLinkNotifierProvider.future),
+    timeout: 1000,
+  );
+  await _safeInit(
+    "telegram auth",
+    () => container.read(telegramAuthLinkHandlerProvider.future),
     timeout: 1000,
   );
   await _init(
