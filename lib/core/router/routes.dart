@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/app_router.dart';
+import 'package:hiddify/features/auth/widget/telegram_login_page.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/config_option/overview/config_options_page.dart';
 import 'package:hiddify/features/config_option/widget/quick_settings_modal.dart';
@@ -157,6 +158,21 @@ class IntroRoute extends GoRouteData {
       fullscreenDialog: true,
       name: name,
       child: IntroPage(),
+    );
+  }
+}
+
+@TypedGoRoute<TelegramLoginRoute>(
+    path: "/auth/login", name: TelegramLoginRoute.name)
+class TelegramLoginRoute extends GoRouteData {
+  const TelegramLoginRoute();
+  static const name = "TelegramLogin";
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      name: name,
+      child: TelegramLoginPage(),
     );
   }
 }
